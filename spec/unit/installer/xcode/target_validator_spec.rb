@@ -22,7 +22,8 @@ module Pod
             options.integrate_targets = integrate_targets
           end
 
-          @analyzer = Analyzer.new(config.sandbox, podfile, lockfile).tap do |analyzer|
+          sandbox.specifications_root.mkpath
+          @analyzer = Analyzer.new(sandbox, podfile, lockfile).tap do |analyzer|
             analyzer.installation_options = installation_options
           end
           result = @analyzer.analyze
